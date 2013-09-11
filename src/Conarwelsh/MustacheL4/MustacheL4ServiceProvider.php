@@ -22,18 +22,22 @@ class MustacheL4ServiceProvider extends ServiceProvider {
 
 		$app = $this->app;
 
-		$app->extend('view.engine.resolver', function($resolver, $app)
+		$extension = $app['config']->get('mustache-l4::config.extension');
+		$extension ?: 'mustache';
+
+		$app->extend('view.engine.resolver', function($resolver, $app) use ($extension)
 		{
-			$resolver->register('mustache', function() use($app)
+			$resolver->register($extension, function() use($app)
 			{
 				return $app->make('Conarwelsh\MustacheL4\MustacheEngine');
 			});
+
 			return $resolver;
 		});
 
-		$app->extend('view', function($env, $app)
+		$app->extend('view', function($env, $app) use ($extension)
 		{
-			$env->addExtension('mustache', 'mustache');
+			$env->addExtension($extension, $extension);
 			return $env;
 		});
 	}
