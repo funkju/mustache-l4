@@ -13,13 +13,13 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.x",
-        "mustache/mustache": "dev-master"
+        "illuminate/support": "4.0.*",
+        "mustache/mustache": "v2.4.1"
     },
     "autoload": {
         "psr-0": {
             "Conarwelsh\\MustacheL4": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
